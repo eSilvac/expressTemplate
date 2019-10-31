@@ -1,9 +1,11 @@
 // Initial Config
+const cors = require('cors');
 const path = require('path');
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const app = express();
+require('dotenv').config();
 
 // Database
 require("./models/config");
@@ -12,7 +14,7 @@ require("./models/config");
 //const Route = require('./routes/route');
 
 // Middleware
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.static('public'));
