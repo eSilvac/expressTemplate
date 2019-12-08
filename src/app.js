@@ -1,24 +1,22 @@
 // Initial Config
-const cors = require('cors');
-const path = require('path');
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const bodyParser = require('body-parser');
-const app = express();
 require('dotenv').config();
 
+const cors = require('cors');
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+
 // Database
-require("./models/config");
+require("./db");
 
 // Routes
-//const Route = require('./routes/route');
+const router = require('./routes');
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.json());
-app.use(express.static('public'));
-// app.use(Route);
+router(app);
 
 // Handle Errors 404
 app.use((req, res, next) => {
